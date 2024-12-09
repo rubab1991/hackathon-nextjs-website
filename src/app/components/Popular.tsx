@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Popular = () => {
   return (
@@ -52,9 +53,11 @@ const Popular = () => {
 
       {/* Button */}
       <div className="flex justify-center mt-12">
+       <Link href="/allproducts">
         <button className="text-[#2A254B] px-8 py-4 bg-gray-200 hover:bg-gray-300 rounded-md font-medium">
           View Collection
         </button>
+        </Link>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Popular from "./Popular";
 import Products from "./Products";
 import Join from "./join";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -77,7 +78,19 @@ export default function Hero() {
           ))}
         </div>
       </section>
+      <h2 className="text-xl lg:text-3xl font-semibold text-[#2A254B] mb-8 ml-20 py-4">
+        New Ceramics Collection
+      </h2>
       <Products />
+
+<div className="flex justify-center mt-9">
+  <Link href="/allproducts">
+    <button className="text-[#2A254B] w-full md:w-40 py-4 bg-gray-200">
+      View Collection
+    </button>
+  </Link>
+</div>
+
       <Popular />
       <Join />
     </div>

@@ -1,18 +1,20 @@
 "use client";
 // components/ChairCard.tsx
 import Image from "next/image";
+import Link from "next/link";
 
 
 interface ProductCardProps {
   imageSrc: string;
   title: string;
-  
+  id:string;
   price: string;
 }
 
-export default function ProductCard({ imageSrc, title, price }: ProductCardProps) {
+export default function ProductCard({ id,imageSrc, title, price }: ProductCardProps) {
  
   return (
+    <Link href={`/products/${id}`}>
     <div
       className="max-w-xs rounded overflow-hidden shadow-2xl cursor-pointer"
     >
@@ -38,5 +40,6 @@ export default function ProductCard({ imageSrc, title, price }: ProductCardProps
         <span className="">{price}</span>
       </div>
     </div>
+    </Link>
   );
 }
