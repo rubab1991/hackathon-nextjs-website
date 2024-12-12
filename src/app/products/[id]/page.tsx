@@ -1,10 +1,11 @@
-'use client'; 
+'use client';
 
 import React from "react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext"; // Assuming you have a Cart Context
 import Link from "next/link";
 
+// Product interface
 interface Product {
   id: string;
   imageSrc: string;
@@ -14,95 +15,25 @@ interface Product {
   price: string;
 }
 
-// Define your product data directly here
+// Product data
 const productData: Product[] = [
-  {
-    id: "1",
-    imageSrc: "/images/p5.png",
-    name: "Graystone vase",
-    description: "A timeless ceramic vase with a soft color gray glaze.",
-    title: "The Dandy Chair",
-    price: "£250",
-  },
-  {
-    id: "2",
-    imageSrc: "/images/p6.png",
-    name: "Rustic Vase Set",
-    description: "A rustic ceramic vase set perfect for modern interiors.",
-    title: "Rustic Vase Set",
-    price: "£155",
-  },
-  {
-    id: "3",
-    imageSrc: "/images/p7.png",
-    name: "Silky Vase",
-    description: "A sleek and modern vase with a glossy finish.",
-    title: "The Silky Vase",
-    price: "£125",
-  },
-  {
-    id: "4",
-    imageSrc: "/images/p8.png",
-    name: "Classic Vase",
-    description: "A classic ceramic vase with an elegant white finish.",
-    title: "Classic Vase",
-    price: "£180",
-  },
-  {
-    id: "5",
-    imageSrc: "/images/p9.png",
-    name: "Lucy Lamp",
-    description: "A contemporary lamp with a unique, modern design.",
-    title: "The Lucy Lamp",
-    price: "£399",
-  },
-  {
-    id: "6",
-    imageSrc: "/images/p1.png",
-    name: "Dandy Chair",
-    description: "A comfortable and stylish chair for any living space.",
-    title: "The Dandy Chair",
-    price: "£250",
-  },
-  {
-    id: "7",
-    imageSrc: "/images/p2.png",
-    name: "Rustic Vase Set",
-    description: "A timeless set of vases with a textured design.",
-    title: "Rustic Vase Set",
-    price: "£155",
-  },
-  {
-    id: "8",
-    imageSrc: "/images/p3.png",
-    name: "Silky Vase",
-    description: "An elegant vase with a smooth and silky finish.",
-    title: "The Silky Vase",
-    price: "£125",
-  },
-  {
-    id: "9",
-    imageSrc: "/images/p4.png",
-    name: "Lucy Lamp",
-    description: "A stylish lamp that enhances the ambiance of any room.",
-    title: "The Lucy Lamp",
-    price: "£399",
-  },
+  // (your product data here)
 ];
 
+// Next.js expects params to be passed this way
 interface ProductDetailProps {
-  params: { id: string }; // Type the params correctly here
+  params: { id: string };  // params come from dynamic routing in Next.js
 }
 
 export default function ProductDetail({ params }: ProductDetailProps) {
-  const { addToCart } = useCart(); // Assuming this is your cart context
+  const { addToCart } = useCart();
 
-  // Find the product based on the ID from params
+  // Find the product by the ID from params
   const product = productData.find((item) => item.id === params.id);
 
   const handleAddToCart = () => {
     if (product) {
-      addToCart(product); // Call the cart function to add product
+      addToCart(product); // Add product to cart
     }
   };
 
