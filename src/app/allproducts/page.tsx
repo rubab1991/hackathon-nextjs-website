@@ -78,11 +78,12 @@ const Allproducts = () => {
           ))}
         </div>
 <Products />
-        {/* Join Section */}
-        <div className="mt-10">
+       
+      </div>
+       {/* Join Section */}
+       <div className="mt-10">
           <Join />
         </div>
-      </div>
     </div>
   );
 };

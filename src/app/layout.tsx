@@ -3,12 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/nav";
 import Footer from "./components/footer";
+import { CartProvider } from "@/context/CartContext"; // Import CartProvider
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Your Website Title",
-  description: "Your website description goes here",
+  title: "Hackathon E-Commerce Store",
+  description: "Discover amazing products at unbeatable prices!",
 };
 
 export default function RootLayout({
@@ -27,14 +28,16 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        {/* Layout Structure */}
-        <div className="flex flex-col min-h-screen">
-          <Nav />
-          <main id="main-content" className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        {/* Wrap the entire layout in CartProvider */}
+        <CartProvider>
+          <div className="flex flex-col min-h-screen">
+            <Nav />
+            <main id="main-content" className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </CartProvider>
       </body>
     </html>
   );

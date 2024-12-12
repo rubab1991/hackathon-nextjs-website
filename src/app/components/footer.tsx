@@ -1,5 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const Footer = () => {
   return (
@@ -57,24 +57,7 @@ const Footer = () => {
         <div className="text-center text-sm text-gray-400 mb-4">
           Copyright 2022 Avion LTD
         </div>
-        <div className="flex justify-center space-x-4">
-          <a href="#" className="text-white hover:text-gray-300">
-            <FontAwesomeIcon icon={["fab", "linkedin"]} />
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            <FontAwesomeIcon icon={["fab", "facebook"]} />
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            <FontAwesomeIcon icon={["fab", "instagram"]} />
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            <FontAwesomeIcon icon={["fab", "skype"]} />
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            <FontAwesomeIcon icon={["fab", "twitter"]} />
-          </a>
-        </div>
-      </div>
+       </div>
     </footer>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 const Nav = () => {
   return (
     
@@ -11,7 +12,9 @@ const Nav = () => {
       <Image src="/images/search.png" alt="search" width={20} height={20} />
         <h1 className="text-xl font-bold">Avion</h1>
         <div className='flex gap-1'>
+          <Link href="/shopping-cart">
         <Image src="/images/cart.png" alt="cart" width={20} height={20} />
+        </Link>
         <Image src="/images/user.png" alt="cart" width={20} height={20} />
         </div>
         </div>

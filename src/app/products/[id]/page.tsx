@@ -1,113 +1,108 @@
+'use client';
+
 import React from "react";
 import Image from "next/image";
+import { useCart } from "@/context/CartContext"; // Assuming you have a Cart Context
+import Link from "next/link";
 
-// Sample data
-const productData = [
-  
-    {id:"1",
-        imageSrc: "/images/p5.png",
-        title: "The Dandy Chair",
-        price: "£250",
-        description: "A timeless design with premium materials.",
-        dimensions: {
-          height: "110cm",
-          width: "75cm",
-          depth: "50cm",
-        },
-      },
-      {
-        id:"2",
-        imageSrc: "/images/p6.png",
-        title: "Rustic Vase Set",
-        price: "£155",
-        description: "A timeless design with premium materials.",
-        dimensions: {
-          height: "110cm",
-          width: "75cm",
-          depth: "50cm",
-        },
-      },
-      {
-        id:"3",
-        imageSrc: "/images/p8.png",
-        title: "The Silky Vase",
-        price: "£125",
-        description: "A timeless design with premium materials.",
-        dimensions: {
-          height: "110cm",
-          width: "75cm",
-          depth: "50cm",
-        },
-      },
-      {
-        id:"4",
-        imageSrc: "/images/p9.png",
-        title: "The Lucy Lamp",
-        price: "£399",
-        description: "A timeless design with premium materials.",
-        dimensions: {
-          height: "110cm",
-          width: "75cm",
-          depth: "50cm",
-        },
-      },
- {id:"5",
-      imageSrc: "/images/p1.png",
-      title: "The Dandy chair",
+interface Product {
+  id: string;
+  imageSrc: string;
+  name: string;
+  description: string;
+  title: string;
+  price: string;
+}
+
+// Define your product data directly here
+const productData: Product[] = [
+ 
+    {
+      id: "1",
+      imageSrc: "/images/p5.png",
+      name: "Graystone vase",
+      description: "A timeless ceramic vase with a soft color gray glaze.",
+      title: "The Dandy Chair",
       price: "£250",
-      description: "A timeless design with premium materials.",
-      dimensions: {
-        height: "110cm",
-        width: "75cm",
-        depth: "50cm",
-      },
     },
-    {id:"6",
-      imageSrc: "/images/p2.png",
+    {
+      id: "2",
+      imageSrc: "/images/p6.png",
+      name: "Rustic Vase Set",
+      description: "A rustic ceramic vase set perfect for modern interiors.",
       title: "Rustic Vase Set",
       price: "£155",
-      description: "A timeless design with premium materials.",
-      dimensions: {
-        height: "110cm",
-        width: "75cm",
-        depth: "50cm",
-      },
     },
     {
-      id:"7",
-      imageSrc: "/images/p3.png",
+      id: "3",
+      imageSrc: "/images/p7.png",
+      name: "Silky Vase",
+      description: "A sleek and modern vase with a glossy finish.",
       title: "The Silky Vase",
       price: "£125",
-      description: "A timeless design with premium materials.",
-      dimensions: {
-        height: "110cm",
-        width: "75cm",
-        depth: "50cm",
-      },
     },
     {
-      id:"8",
-      imageSrc: "/images/p4.png",
+      id: "4",
+      imageSrc: "/images/p8.png",
+      name: "Classic Vase",
+      description: "A classic ceramic vase with an elegant white finish.",
+      title: "Classic Vase",
+      price: "£180",
+    },
+    {
+      id: "5",
+      imageSrc: "/images/p9.png",
+      name: "Lucy Lamp",
+      description: "A contemporary lamp with a unique, modern design.",
       title: "The Lucy Lamp",
       price: "£399",
-      description: "A timeless design with premium materials.",
-      dimensions: {
-        height: "110cm",
-        width: "75cm",
-        depth: "50cm",
-      },
     },
+    {
+      id: "6",
+      imageSrc: "/images/p1.png",
+      name: "Dandy Chair",
+      description: "A comfortable and stylish chair for any living space.",
+      title: "The Dandy Chair",
+      price: "£250",
+    },
+    {
+      id: "7",
+      imageSrc: "/images/p2.png",
+      name: "Rustic Vase Set",
+      description: "A timeless set of vases with a textured design.",
+      title: "Rustic Vase Set",
+      price: "£155",
+    },
+    {
+      id: "8",
+      imageSrc: "/images/p3.png",
+      name: "Silky Vase",
+      description: "An elegant vase with a smooth and silky finish.",
+      title: "The Silky Vase",
+      price: "£125",
+    },
+    {
+      id: "9",
+      imageSrc: "/images/p4.png",
+      name: "Lucy Lamp",
+      description: "A stylish lamp that enhances the ambiance of any room.",
+      title: "The Lucy Lamp",
+      price: "£399",
+    },
+  ];
 
 
+export default function ProductDetail({ params }: { params: { id: string } }) {
+  const { addToCart } = useCart(); // Assuming this is your cart context
 
-  // Add more products as needed
-];
+  // Find the product based on the ID from params
+  const product = productData.find((item) => item.id === params.id);
 
-const ProductDetail = ({ params }: { params: { id: string } }) => {
-  const { id } = params;
-
-  // Find the product based on the ID
-  const product = productData.find((product) => product.id === id);
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product); // Call the cart function to add product
+    }
+  };
 
   if (!product) {
     return <p>Product not found!</p>;
@@ -130,29 +125,17 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
             <h1 className="text-3xl font-bold text-gray-900">{product.title}</h1>
             <p className="text-xl text-gray-600">{product.price}</p>
             <p className="text-gray-700">{product.description}</p>
-            <h3 className="text-lg font-semibold text-gray-800">Dimensions</h3>
-            <p className="text-gray-700">
-              Height: {product.dimensions.height} | Width: {product.dimensions.width} | Depth: {product.dimensions.depth}
-            </p>
-            <div className="flex items-center space-x-4">
-              <label htmlFor="amount" className="text-gray-700">
-                Amount:
-              </label>
-              <input
-                type="number"
-                id="amount"
-                defaultValue={1}
-                className="border border-gray-300 rounded px-2 py-1 w-16 text-center"
-              />
-              <button className="bg-black text-white py-2 px-6 rounded-lg">
-                Add to Cart
-              </button>
-            </div>
+           <Link href="/shopping-cart">
+            <button
+              onClick={handleAddToCart}
+              className="mt-4 bg-black text-white py-2 px-6 rounded-lg"
+            >
+              Add to Cart
+            </button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default ProductDetail;
+}
