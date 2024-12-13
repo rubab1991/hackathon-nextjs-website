@@ -1,9 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
 
-// Moved useCart to a client-side component if needed
+import React from 'react';
+import Image from 'next/image';
+import { useCart } from '@/context/CartContext';
+import Link from 'next/link';
 
+// Product interface
 interface Product {
   id: string;
   imageSrc: string;
@@ -85,21 +87,32 @@ const productData: Product[] = [
     description: "A stylish lamp that enhances the ambiance of any room.",
     title: "The Lucy Lamp",
     price: "£399",
-  },
-  // Other products...
+  },// your product data
 ];
 
+// Updated PageProps to support async params
 interface PageProps {
   params: { id: string };
 }
 
-// `generateStaticParams` for static generation
+// Ensure you handle the params asynchronously if needed
 export async function generateStaticParams() {
-  return productData.map((product) => ({ id: product.id }));
+  const products = productData.map((product) => ({
+    id: product.id,
+  }));
+  return products;
 }
 
 export default function ProductDetail({ params }: PageProps) {
+  const { addToCart } = useCart();
+
   const product = productData.find((item) => item.id === params.id);
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product);
+    }
+  };
 
   if (!product) {
     return <p>Product not found!</p>;
@@ -123,7 +136,10 @@ export default function ProductDetail({ params }: PageProps) {
             <p className="text-xl text-gray-600">{product.price}</p>
             <p className="text-gray-700">{product.description}</p>
             <Link href="/shopping-cart">
-              <button className="mt-4 bg-black text-white py-2 px-6 rounded-lg">
+              <button
+                onClick={handleAddToCart}
+                className="mt-4 bg-black text-white py-2 px-6 rounded-lg"
+              >
                 Add to Cart
               </button>
             </Link>
