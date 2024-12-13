@@ -1,8 +1,17 @@
-const products = [
+
+export type Product = {
+  id: string;
+
+  title: string;
+  description: string;
+  price: string;
+  imageSrc: string;
+};
+const products:Product [] = [
     {
         id: "1",
         imageSrc: "/images/p5.png",
-        name: "Graystone vase",
+
         description: "A timeless ceramic vase with a soft color gray glaze.",
         title: "The Dandy Chair",
         price: "£250",
@@ -10,7 +19,7 @@ const products = [
       {
         id: "2",
         imageSrc: "/images/p6.png",
-        name: "Rustic Vase Set",
+
         description: "A rustic ceramic vase set perfect for modern interiors.",
         title: "Rustic Vase Set",
         price: "£155",
@@ -18,7 +27,6 @@ const products = [
       {
         id: "3",
         imageSrc: "/images/p7.png",
-        name: "Silky Vase",
         description: "A sleek and modern vase with a glossy finish.",
         title: "The Silky Vase",
         price: "£125",
@@ -26,7 +34,7 @@ const products = [
       {
         id: "4",
         imageSrc: "/images/p8.png",
-        name: "Classic Vase",
+      
         description: "A classic ceramic vase with an elegant white finish.",
         title: "Classic Vase",
         price: "£180",
@@ -34,7 +42,6 @@ const products = [
       {
         id: "5",
         imageSrc: "/images/p9.png",
-        name: "Lucy Lamp",
         description: "A contemporary lamp with a unique, modern design.",
         title: "The Lucy Lamp",
         price: "£399",
@@ -42,7 +49,7 @@ const products = [
       {
         id: "6",
         imageSrc: "/images/p1.png",
-        name: "Dandy Chair",
+       
         description: "A comfortable and stylish chair for any living space.",
         title: "The Dandy Chair",
         price: "£250",
@@ -50,7 +57,7 @@ const products = [
       {
         id: "7",
         imageSrc: "/images/p2.png",
-        name: "Rustic Vase Set",
+       
         description: "A timeless set of vases with a textured design.",
         title: "Rustic Vase Set",
         price: "£155",
@@ -58,7 +65,7 @@ const products = [
       {
         id: "8",
         imageSrc: "/images/p3.png",
-        name: "Silky Vase",
+       
         description: "An elegant vase with a smooth and silky finish.",
         title: "The Silky Vase",
         price: "£125",
@@ -66,11 +73,11 @@ const products = [
       {
         id: "9",
         imageSrc: "/images/p4.png",
-        name: "Lucy Lamp",
+       
         description: "A stylish lamp that enhances the ambiance of any room.",
         title: "The Lucy Lamp",
         price: "£399",
       },
     // More products
   ];
-  export default products
+  export default products;
