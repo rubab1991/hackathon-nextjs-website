@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { useCart } from "@/context/CartContext"; // Assuming you have a Cart Context
+import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 
 // Product interface
@@ -92,22 +92,20 @@ const productData: Product[] = [
   // Add other products here
 ];
 
-// Correct type for dynamic route params
-interface ProductDetailProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function ProductDetail({ params }: ProductDetailProps) {
+// Ensure correct types for dynamic route params
+export default async function ProductDetail({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { addToCart } = useCart();
 
-  // Find the product by the ID from params
+  // Fetch the product by ID
   const product = productData.find((item) => item.id === params.id);
 
   const handleAddToCart = () => {
     if (product) {
-      addToCart(product); // Add product to cart
+      addToCart(product);
     }
   };
 
