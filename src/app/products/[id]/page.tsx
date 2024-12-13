@@ -1,6 +1,6 @@
-import { GetServerSideProps } from 'next';
 import products from "@/app/data/products"
 
+// Define the Product type
 type Product = {
   id: string;
   title: string;
@@ -9,11 +9,11 @@ type Product = {
   imageSrc: string;
 };
 
-type ProductDetailProps = {
-  product: Product | null;
-};
+// The page component itself
+const ProductDetail = ({ params }: { params: { id: string } }) => {
+  // Find the product based on the id from params
+  const product = products.find((item) => item.id === params.id);
 
-const ProductDetail = ({ product }: ProductDetailProps) => {
   if (!product) {
     return <p>Product not found</p>;
   }
@@ -28,16 +28,20 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   );
 };
 
-// Get server-side props to fetch product data based on ID
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { id } = params as { id: string }; // Cast to ensure `id` is a string
-  const product = products.find((item) => item.id === id) || null;
+// Fetch product data (used only within app directory)
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const product = products.find((item) => item.id === params.id);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+    };
+  }
 
   return {
-    props: {
-      product,
-    },
+    title: product.title,
+    description: product.description,
   };
-};
+}
 
 export default ProductDetail;
