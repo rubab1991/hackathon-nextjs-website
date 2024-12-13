@@ -1,7 +1,7 @@
 "use client"
 // pages/shopping-cart.tsx (ShoppingCart page)
 import React from "react";
-import { useCart } from "@/context/CartContext";
+import { useCart } from "../../context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";  // Import the useRouter hook

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import products from '@/app/data/products'; // Adjust the path based on your actual file structure
+import products from '../../data/products'; // Adjust the path based on your actual file structure
 
 type Product = {
   id: string;
