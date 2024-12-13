@@ -1,5 +1,6 @@
-import products from "@/app/data/products"; // Adjust the path accordingly
-import Image from "next/image";
+import { FC } from 'react';
+import products from '@/app/data/products'; // Adjust path accordingly
+import Image from 'next/image';
 type Product = {
   id: string;
   title: string;
@@ -12,8 +13,8 @@ type Params = {
   id: string;
 };
 
-// Component to display product details
-const ProductDetail = ({ params }: { params: Params }) => {
+// Component for displaying product details
+const ProductDetail: FC<{ params: Params }> = ({ params }) => {
   const product = products.find((item) => item.id === params.id);
 
   if (!product) {
@@ -35,7 +36,5 @@ const ProductDetail = ({ params }: { params: Params }) => {
     </div>
   );
 };
-
-// If you're not using `getServerSideProps` and relying on server-side fetching, this component structure should work in the App directory.
 
 export default ProductDetail;
