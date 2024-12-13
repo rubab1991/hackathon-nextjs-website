@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import products from '@/app/data/products'; // Adjust path accordingly
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import products from '@/app/data/products'; // Adjust the path based on your actual file structure
+
 type Product = {
   id: string;
   title: string;
@@ -9,16 +11,17 @@ type Product = {
   imageSrc: string;
 };
 
-type Params = {
-  id: string;
+// Define the PageProps with params
+type PageProps = {
+  params: { id: string };
 };
 
-// Component for displaying product details
-const ProductDetail: FC<{ params: Params }> = ({ params }) => {
+const ProductDetail: FC<PageProps> = ({ params }) => {
   const product = products.find((item) => item.id === params.id);
 
   if (!product) {
-    return <p>Product not found</p>;
+    // Return 404 if product not found
+    notFound();
   }
 
   return (
@@ -26,13 +29,12 @@ const ProductDetail: FC<{ params: Params }> = ({ params }) => {
       <h1>{product.title}</h1>
       <p>{product.price}</p>
       <p>{product.description}</p>
-      
-<Image
-  src={product.imageSrc}
-  alt={product.title}
-  width={500} // Set a fixed width and height
-  height={500}
-/>
+      <Image
+        src={product.imageSrc}
+        alt={product.title}
+        width={500}
+        height={500}
+      />
     </div>
   );
 };
