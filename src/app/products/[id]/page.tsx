@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
@@ -92,7 +92,11 @@ const productData: Product[] = [
   // Add other products here
 ];
 
-export default function ProductDetail({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: { id: string };
+}
+
+export default function ProductDetail({ params }: PageProps) {
   const { addToCart } = useCart();
 
   // Fetch product synchronously
