@@ -17,7 +17,6 @@ interface Product {
 
 // Product data
 const productData: Product[] = [
-  // (your product data here)
   {
     id: "1",
     imageSrc: "/images/p5.png",
@@ -90,7 +89,7 @@ const productData: Product[] = [
     title: "The Lucy Lamp",
     price: "£399",
   },
-
+  // Add other products here
 ];
 
 // Correct type for dynamic route params
