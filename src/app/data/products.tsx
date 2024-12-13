@@ -1,4 +1,4 @@
-export const products = [
+const products = [
     {
         id: "1",
         imageSrc: "/images/p5.png",
@@ -73,4 +73,4 @@ export const products = [
       },
     // More products
   ];
-  
+  export default products

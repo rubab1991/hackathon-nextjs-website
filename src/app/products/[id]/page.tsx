@@ -1,6 +1,7 @@
-import { products } from '../../data/products';
+import products from "@/app/data/products"
 
 export default function ProductDetail({ params }: { params: { id: string } }) {
+  // Find the product based on the id from params
   const product = products.find((item) => item.id === params.id);
 
   if (!product) {
