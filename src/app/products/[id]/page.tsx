@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
@@ -92,15 +92,10 @@ const productData: Product[] = [
   // Add other products here
 ];
 
-// Ensure correct types for dynamic route params
-export default async function ProductDetail({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function ProductDetail({ params }: { params: { id: string } }) {
   const { addToCart } = useCart();
 
-  // Fetch the product by ID
+  // Fetch product synchronously
   const product = productData.find((item) => item.id === params.id);
 
   const handleAddToCart = () => {
