@@ -1,6 +1,5 @@
-import products from "@/app/data/products"
-
-// Define the Product type
+import products from "@/app/data/products"; // Adjust the path accordingly
+import Image from "next/image";
 type Product = {
   id: string;
   title: string;
@@ -9,9 +8,12 @@ type Product = {
   imageSrc: string;
 };
 
-// The page component itself
-const ProductDetail = ({ params }: { params: { id: string } }) => {
-  // Find the product based on the id from params
+type Params = {
+  id: string;
+};
+
+// Component to display product details
+const ProductDetail = ({ params }: { params: Params }) => {
   const product = products.find((item) => item.id === params.id);
 
   if (!product) {
@@ -23,25 +25,17 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
       <h1>{product.title}</h1>
       <p>{product.price}</p>
       <p>{product.description}</p>
-      <img src={product.imageSrc} alt={product.title} />
+      
+<Image
+  src={product.imageSrc}
+  alt={product.title}
+  width={500} // Set a fixed width and height
+  height={500}
+/>
     </div>
   );
 };
 
-// Fetch product data (used only within app directory)
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const product = products.find((item) => item.id === params.id);
-
-  if (!product) {
-    return {
-      title: "Product Not Found",
-    };
-  }
-
-  return {
-    title: product.title,
-    description: product.description,
-  };
-}
+// If you're not using `getServerSideProps` and relying on server-side fetching, this component structure should work in the App directory.
 
 export default ProductDetail;
