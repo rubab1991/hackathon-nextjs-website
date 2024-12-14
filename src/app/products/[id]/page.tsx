@@ -1,39 +1,40 @@
-// src/app/products/[id]/page.tsx
-import { FC } from "react";
-import products from "../../data/products"; // Adjust the import path as needed
-import Image from "next/image";
-import Link from "next/link";
+import { Metadata } from 'next';
+
+// TypeScript interface for PageProps
 interface PageProps {
   params: {
-    id: number;
+    id: string; // Ensure `id` is a string
   };
 }
 
-const ProductPage: FC<PageProps> = ({ params }) => {
-  const { id } = params;
+// Add metadata for the page (optional)
+export const metadata: Metadata = {
+  title: 'Product Details',
+};
 
-  // Find the product by ID
-  const product = products.find((item) => item.id === id);
-
-  if (!product) {
-    return <div className="text-center text-red-500 text-xl font-bold">Product not found.</div>;
-  }
+// Product page component
+const ProductPage = ({ params }: PageProps) => {
+  const { id } = params; // Extract the dynamic route parameter
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="flex flex-col items-center">
-        
-        <Image src={product.imageSrc}
-          alt={product.title}
-          className="w-64 h-auto rounded-lg shadow-md mb-6" width={500} height={500} />    
-        
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">{product.title}</h1>
-        <p className="text-gray-600 mb-4 text-center">{product.description}</p>
-        <p className="text-xl text-green-500 font-semibold">Price: {product.price}</p>
-      <Link href="/shopping-cart">  <button>Add to Cart</button></Link>
-      </div>
+    <div>
+      <h1>Product Details</h1>
+      <p>Product ID: {id}</p>
+      {/* Add more details or data fetching logic */}
     </div>
   );
 };
 
 export default ProductPage;
+
+// If needed, use `generateStaticParams` for SSG
+export async function generateStaticParams() {
+  // Fetch or define dynamic IDs for products
+  const products = [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+  ];
+
+  return products.map((product) => ({ params: { id: product.id } }));
+}
