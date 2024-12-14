@@ -1,40 +1,31 @@
-import { Metadata } from 'next';
-
-// TypeScript interface for PageProps
 interface PageProps {
   params: {
-    id: string; // Ensure `id` is a string
+    id: string;
   };
 }
 
-// Add metadata for the page (optional)
-export const metadata: Metadata = {
-  title: 'Product Details',
-};
+// Dynamic product page component
+const ProductPage = async ({ params }: PageProps) => {
+  const { id } = params;
 
-// Product page component
-const ProductPage = ({ params }: PageProps) => {
-  const { id } = params; // Extract the dynamic route parameter
+  // Simulated fetch operation (e.g., fetch product details)
+  const product = await fetchProductById(id); // Replace with actual fetch logic
 
   return (
     <div>
       <h1>Product Details</h1>
       <p>Product ID: {id}</p>
-      {/* Add more details or data fetching logic */}
+      <p>{product?.name || "No product found"}</p>
     </div>
   );
 };
 
 export default ProductPage;
 
-// If needed, use `generateStaticParams` for SSG
-export async function generateStaticParams() {
-  // Fetch or define dynamic IDs for products
-  const products = [
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-  ];
-
-  return products.map((product) => ({ params: { id: product.id } }));
+// Mock fetch function (replace with actual API call)
+async function fetchProductById(id: string) {
+  return {
+    id,
+    name: `Product ${id}`,
+  };
 }
