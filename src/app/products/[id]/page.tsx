@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 interface PageProps {
   params: {
-    id: string;
+    id: number;
   };
 }
 
