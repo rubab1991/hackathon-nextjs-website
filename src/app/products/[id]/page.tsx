@@ -5,7 +5,7 @@ import products from "../../data/products";    // Import the products data
 
 interface ProductPageProps {
   params: {
-    id: string;  // Typing the 'id' as string
+    id: any;  // Typing the 'id' as string
   };
 }
 
