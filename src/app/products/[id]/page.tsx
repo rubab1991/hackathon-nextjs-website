@@ -3,14 +3,14 @@
 import { Product } from "../../data/products";  // Import the Product type
 import products from "../../data/products";    // Import the products data
 
-interface ProductPageProps {
+interface props {
   params: {
     id: any;  // Typing the 'id' as string
   };
 }
 
-const ProductDetailPage = ({ params }: ProductPageProps) => {
-  const product = products.find((p) => p.id === params.id);
+const ProductDetailPage = ( props:any) => {
+  const product = products.find((p) => p.id === props.params.id);
 
   if (!product) {
     return <div>Product not found</div>;
