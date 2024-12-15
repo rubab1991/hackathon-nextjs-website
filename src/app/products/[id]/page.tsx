@@ -1,7 +1,7 @@
 // src/app/products/[id]/page.tsx
 
 import { Product } from "../../data/products";  // Import the Product type
-import products from "../../data/products"     // Import the products data
+import products from "../../data/products";    // Import the products data
 
 interface ProductPageProps {
   params: {
