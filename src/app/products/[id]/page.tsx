@@ -22,6 +22,8 @@ const ProductDetailPage = ( props:any) => {
       <img src={product.imageSrc} alt={product.title} className="w-full h-auto" />
       <p className="mt-4">{product.description}</p>
       <p className="text-xl font-bold mt-4">{product.price}</p>
+    
+    <div>Add to cart</div>
     </div>
   );
 };
